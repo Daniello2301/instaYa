@@ -1,8 +1,12 @@
 import { AiFillHome } from 'react-icons/ai'
+<<<<<<< HEAD
 import { NavLink } from 'react-router-dom';
 import { Button, Container, Nav, Navbar} from 'react-bootstrap';
 
 import './Navbar.css'
+=======
+import { Container, Nav, Navbar} from 'react-bootstrap';
+>>>>>>> cb470bc2f0170b2102236194661461b2e1482a20
 
 function NavbarComponent() {
   return (
