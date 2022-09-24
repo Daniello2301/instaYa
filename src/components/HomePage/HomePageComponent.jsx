@@ -21,7 +21,7 @@ function Home(){
         <Link to="/login">
             <button className="Login"type="submit">Iniciar Sesion</button>
         </Link>
-        <Link to="/singup">
+        <Link to="/Signup">
             <button className="Login"type="submit">Crear Usuario</button>
         </Link>
         </>
