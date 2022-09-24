@@ -3,6 +3,8 @@ import { useState } from 'react'
 import {Link} from 'react-router-dom'
 import {Form } from 'react-bootstrap'
 
+import "./Login.css";
+
 function LoginComponent(){ 
 
     const [validate, setValidate] = useState(true)
@@ -42,15 +44,15 @@ function LoginComponent(){
 
     return(
         <>  
-            <div className='container'>
-                <h1 className='text-center mt-3'> Log in</h1>
-                <div className='login-container'>
+            <div className='contenedor'>
+                <h1 className='text-center mt-3'>Iniciar Sesion</h1>
+                <div className='login-container d-flex align-items-center justify-content-center w-100 my-5'>
                     <div className='login-image'>
                         <img src=''/>
                     </div>
-                    <Form id="formLogin">
+                    <Form id="formLogin" style={{width:450+"px"}}>
                         <Form.Group className="mb-3" >
-                            <Form.Label>Email address</Form.Label>
+                            <Form.Label>Correo electronico</Form.Label>
                             <Form.Control type="email" 
                                 placeholder="Enter email" 
                                 id="email" 
@@ -60,7 +62,7 @@ function LoginComponent(){
                         </Form.Group>
 
                         <Form.Group className="mb-3" >
-                            <Form.Label>Password</Form.Label>
+                            <Form.Label>Contraseña</Form.Label>
                             <Form.Control type="password" 
                                 placeholder="Password" 
                                 id="password" 

@@ -15,7 +15,7 @@ function NavbarComponent() {
             <Nav className="nav-options">
               <NavLink className="nav-link" to={"/Sends"} > Envíos </NavLink>
               <NavLink className="nav-link" to={"/NewSend"} > Crear Envio </NavLink>
-              <NavLink className="nav-link" to={"/"} > Dashboard </NavLink>
+              <NavLink className="nav-link disabled"  to={"/"} > Dashboard </NavLink>
             </Nav>
           </Navbar.Collapse>
           <Button className='btn-login' variant="light" href="/Login" >Log In</Button>
