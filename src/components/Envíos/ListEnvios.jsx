@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Container, Table } from 'react-bootstrap'
 import EnvioItem from './EnvioItem'
-import Navbar from '../navbar/Navbar'
+import NavbarComponent from '../navbar/Navbar'
 
 function ListEnvios(){
 
@@ -25,7 +25,7 @@ function ListEnvios(){
 
     return(
         <>
-            <Navbar />
+            <NavbarComponent />
             <Container className='mt-5'>
                 <Table>
                     <thead>

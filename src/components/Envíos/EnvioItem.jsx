@@ -15,7 +15,7 @@ function EnvioItem({ sends }){
                             <td> {send.city} </td>
                             <td> {send.address} </td>
                             <td> {send.status} </td>
-                            <td> <NavLink to={`/editSend`} className="btn btn-warning" > Edit </NavLink> </td> 
+                            <td> <NavLink to={`/EditSend`} className="btn btn-warning" > Edit </NavLink> </td> 
                         </tr>
 
                     )
