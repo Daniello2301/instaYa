@@ -1,9 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import LoginComponent from "./components/login/LoginComponent";
 import HomePageComponent from "./components/HomePage/HomePageComponent";
 import SignupComponent from "./components/Signup/SignupComponent";
-import ListEnvios from './components/Envíos/ListEnvios'
+import ListEnvios from './components/Envios/ListEnvios'
 import Regorder from "./components/RegOrder/Regorder";
 import EditEnvio from "./components/EditEnvio/EditEnvio";
 

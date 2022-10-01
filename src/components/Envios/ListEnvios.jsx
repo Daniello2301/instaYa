@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { Container, Table } from 'react-bootstrap'
 import EnvioItem from './EnvioItem'
 import NavbarComponent from '../navbar/Navbar'
@@ -15,7 +14,7 @@ function ListEnvios(){
         status:"Enviado"
         },
         {
-            id:345654,
+            id:345655,
             date:"2022/09/21",
             city:"Medellin",
             address:"Cl 54 #08-32",
