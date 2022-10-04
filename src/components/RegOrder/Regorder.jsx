@@ -15,12 +15,16 @@ const Regorder = () => {
 		todoHeight: "",
 		todoWeight: "",
 		todoCity: "",
-		todoAdress: "",
+		todoAddress: "",
 		todoId: "",
 		todoName: "",
+		todoLastName: "",
+		todoIdD: "",
+		todoNameD: "",
+		todoLastNameD: "",
 		todoEmail: "",
 		todoCityD: "",
-		todoAdressD: "",
+		todoAddressD: "",
 	});
 
 	const handleSubmit = (e) => {
@@ -139,86 +143,141 @@ const Regorder = () => {
 						</div>
 						<div className="row">
 							<div className="col">
-								<input
-									name="todoCity"
-									placeholder="Ciudad de Regogida"
-									type="text"
-									className="form-control mb-3"
-									onChange={handleChange}
-									value={todo.todoCity}
-								/>
+								<div className="row">
+									<div className="col">
+										<input
+											name="todoId"
+											placeholder="Cedula Cliente"
+											type="text"
+											className="form-control mb-3"
+											onChange={handleChange}
+											value={todo.todoId}
+										/>
+									</div>
+								</div>
+								<div className="row">
+									<div className="col">
+										<input
+											name="todoName"
+											placeholder="Nombre Cliente"
+											type="text"
+											className="form-control mb-3"
+											onChange={handleChange}
+											value={todo.todoName}
+										/>
+									</div>
+								</div>
+								<div className="row">
+									<div className="col">
+										<input
+											name="todoLastName"
+											placeholder="Apellido Cliente"
+											type="text"
+											className="form-control mb-3"
+											onChange={handleChange}
+											value={todo.todoLastName}
+										/>
+									</div>
+								</div>
+								<div className="row">
+									<div className="col">
+										<input
+											name="todoEmail"
+											placeholder="Correo Cliente"
+											type="Email"
+											className="form-control mb-3"
+											onChange={handleChange}
+											value={todo.todoEmail}
+										/>
+									</div>
+								</div>
+								<div className="row">
+									<div className="col">
+										<input
+											name="todoCity"
+											placeholder="Ciudad de Regogida"
+											type="text"
+											className="form-control mb-3"
+											onChange={handleChange}
+											value={todo.todoCity}
+										/>
+									</div>
+								</div>
+								<div className="row">
+									<div className="col">
+										<input
+											name="todoAddress"
+											placeholder="Direccion de Regogida"
+											type="text"
+											className="form-control mb-3"
+											onChange={handleChange}
+											value={todo.todoAddress}
+										/>
+									</div>
+								</div>
 							</div>
-						</div>
-						<div className="row">
-							<div className="col">
-								<input
-									name="todoAdress"
-									placeholder="Direccion de Regogida"
-									type="text"
-									className="form-control mb-3"
-									onChange={handleChange}
-									value={todo.todoAdress}
-								/>
-							</div>
-						</div>
-						<div className="row">
-							<div className="col">
-								<input
-									name="todoId"
-									placeholder="Cedula Cliente"
-									type="text"
-									className="form-control mb-3"
-									onChange={handleChange}
-									value={todo.todoId}
-								/>
-							</div>
-						</div>
-						<div className="row">
-							<div className="col">
-								<input
-									name="todoName"
-									placeholder="Nombre Completo Cliente"
-									type="text"
-									className="form-control mb-3"
-									onChange={handleChange}
-									value={todo.todoName}
-								/>
-							</div>
-						</div>
-						<div className="row">
-							<div className="col">
-								<input
-									name="todoEmail"
-									placeholder="Correo Cliente"
-									type="Email"
-									className="form-control mb-3"
-									onChange={handleChange}
-									value={todo.todoEmail}
-								/>
-							</div>
-						</div>
-						<div className="row">
-							<div className="col">
-								<input
-									name="todoCityD"
-									placeholder="Ciudad de Destino"
-									type="text"
-									className="form-control mb-3"
-									onChange={handleChange}
-									value={todo.todoCityD}
-								/>
-							</div>
-						</div>
-						<div className="row">
-							<div className="col">
-								<input
-									name="todoAdressD"
-									placeholder="Direccion de Destino"
-									type="text"
-									className="form-control mb-3"
-									onChange={handleChange}
-									value={todo.todoAdressD}
-								/>
+							<div className="col"  id="lineaVertical">
+								<div className="row">
+									<div className="col">
+										<input
+											name="todoIdD"
+											placeholder="Cedula Destinatario"
+											type="text"
+											className="form-control mb-3"
+											onChange={handleChange}
+											value={todo.todoId}
+										/>
+									</div>
+								</div>
+								
+								<div className="row">
+									<div className="col">
+										<input
+											name="todoNameD"
+											placeholder="Nombre Destinatario"
+											type="text"
+											className="form-control mb-3"
+											onChange={handleChange}
+											value={todo.todoName}
+										/>
+									</div>
+								</div>
+								<div className="row">
+									<div className="col">
+										<input
+											name="todoLastNameD"
+											placeholder="Apellido Destinatario"
+											type="text"
+											className="form-control mb-3"
+											onChange={handleChange}
+											value={todo.todoLastName}
+										/>
+									</div>
+								</div>
+								<div className="row">
+									<div className="col">
+										<input
+											name="todoCityD"
+											placeholder="Ciudad de Destino"
+											type="text"
+											className="form-control mb-3"
+											onChange={handleChange}
+											value={todo.todoCityD}
+										/>
+									</div>
+								</div>
+								<div className="row">
+									<div className="col">
+										<input
+											name="todoAddressD"
+											placeholder="Direccion de Destino"
+											type="text"
+											className="form-control mb-3"
+											onChange={handleChange}
+											value={todo.todoAddressD}
+										/>
+									</div>
+								</div>
 							</div>
 						</div>
 						<button className="btn btn-primary" type="submit">

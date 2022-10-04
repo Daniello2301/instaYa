@@ -33,7 +33,7 @@
 #reg-in-order {
 	align-items: center;
 	justify-content: center;
-	max-width: 450px;
+	max-width: 500px;
 }
 #form-div {
 	align-items: center;
@@ -52,6 +52,10 @@
 	border-radius: 10px;
 }
 
+#lineaVertical {
+	border-left: 2px solid #3c9491;
+
+}
 .btn {
     background: linear-gradient(180deg, #7aceda 0%, #3c9491 100%);
     transition: all .3s;
