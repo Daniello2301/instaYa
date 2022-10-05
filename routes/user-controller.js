@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const { validationResult, check } = require('express-validator');
 const bcrypt = require('bcryptjs');
+const { jwtValidate } = require('../middlewares/jwt-validator');
 
 //impoort User model
 const User = require('../model/User');
@@ -21,7 +22,8 @@ router.post('/',
     check('username', 'User Name is require').not().isEmpty(),
     check('email', 'Email Name is require').not().isEmpty(),
     check('email', 'Email invalid format').isEmail(),    
-    check('password', 'Password is require').not().isEmpty(),    
+    check('password', 'Password is require').not().isEmpty(),
+    jwtValidate
 ],
 async function(req, res){
     try {
@@ -55,8 +57,12 @@ async function(req, res){
         user.city = req.body.city;
         user.username = req.body.username;
         user.email = req.body.email;
-        user.password = req.body.password;
-        user.role = 'USER';
+
+        const salt = bcrypt.genSaltSync(10);
+        const passwordEncripted = bcrypt.hashSync(req.body.password, salt);
+        user.password = passwordEncripted;
+
+        user.role = req.body.role || 'USER';
 
         // Save User INSERT INTO users(user)Values(req.body)
         user = await user.save();
@@ -73,6 +79,9 @@ async function(req, res){
 
 // Get function all users
 router.get('/',
+[
+    jwtValidate
+],
 async function(req, res){
     try {
         
