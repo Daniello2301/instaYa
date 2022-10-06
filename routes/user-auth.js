@@ -50,6 +50,7 @@ async function(req, res){
             identification: userFinded.identification,
             name: userFinded.name, 
             email: userFinded.email,
+            role: userFinded.role,
             accessToken: token
         });
 

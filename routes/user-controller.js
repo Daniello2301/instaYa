@@ -23,7 +23,6 @@ router.post('/',
     check('email', 'Email Name is require').not().isEmpty(),
     check('email', 'Email invalid format').isEmail(),    
     check('password', 'Password is require').not().isEmpty(),
-    jwtValidate
 ],
 async function(req, res){
     try {
@@ -68,7 +67,7 @@ async function(req, res){
         user = await user.save();
 
         // Show in response the users created
-        res.send(user);
+        res.status(200).send(user);
         
     } catch (error) {
         console.log(error);
@@ -93,6 +92,26 @@ async function(req, res){
         console.log(error);
         res.status(500).json({ message: "Error internal server" })
     }
+})
+
+router.delete('/:id', 
+async function (req, res) {
+        try {
+          console.log("DELETE: ", req.params.id);
+          const { id } = req.params;
+      
+          const userDelete = await User.findById({ _id: id });
+          if (!userDelete) {
+            return res.status(400).json({ messagge: "The User is not found" });
+          }
+      
+          const response = await userDelete.remove();
+      
+          res.status(200).send(response);
+        } catch (error) {
+          console.log(error);
+          res.status(500).json({ messagge: "Internal Server Error!" });
+        }
 })
 
 module.exports = router;

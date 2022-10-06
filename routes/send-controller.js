@@ -7,10 +7,15 @@ const Send = require("../model/Send");
 const router = Router();
 
 // Get all sends
-router.get("/", [], async function (req, res) {
+router.get("/", 
+[
+    jwtValidate
+]
+, async function (req, res) {
   try {
     const sends = await Send.find();
     res.send(sends);
+    
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Error internal server" });
@@ -18,7 +23,11 @@ router.get("/", [], async function (req, res) {
 });
 
 // Get sends in delivery status
-router.get("/dev", [], async function (req, res) {
+router.get("/dev", 
+[
+    jwtValidate
+],
+ async function (req, res) {
   try {
     const sends = await Send.find({ status: "ENTREGADO" });
     res.send(sends);
@@ -60,7 +69,7 @@ router.post(
     check("cityUserDelivery", "City of user delivery is require")
       .not()
       .isEmpty(),
-    //jwtValidate
+    jwtValidate
   ],
   async function (req, res) {
     try {
@@ -106,7 +115,11 @@ router.post(
 );
 
 //Update method
-router.put("/update/:id", [], async function (req, res) {
+router.put("/update/:id", 
+[
+    jwtValidate
+],
+async function (req, res) {
   console.log("PUT: ", req.params.id);
 
   try {
@@ -167,7 +180,11 @@ router.put("/update/:id", [], async function (req, res) {
 });
 
 // Delete method by id
-router.delete("/:id", [], async function (req, res) {
+router.delete("/:id", 
+[
+    jwtValidate
+]
+, async function (req, res) {
   try {
     console.log("DELETE: ", req.params.id);
     const { id } = req.params;
