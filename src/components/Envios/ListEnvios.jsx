@@ -69,7 +69,7 @@ function ListEnvios() {
                             <td> {map.addressUserDelivery} </td>
                             <td> {map.nameUserDelivery} </td>
                             <td> {map.status} </td>
-                            <td> <Button to={"/edit"} variant="secondary" > <BiEdit/> </Button> </td>
+                            <td> <Link to={"/edit"} className="btn btn-secondary" > <BiEdit/> </Link> </td>
                         </tr>)
                 }
             </tbody>
