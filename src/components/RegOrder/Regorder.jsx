@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 import { Form } from "react-bootstrap";
-import {Container, Row} from "react-bootstrap";
-
+import { Container, Row } from "react-bootstrap";
 import NavbarComponent from "../navbar/Navbar";
 import { useState } from "react";
 import "./regorders.css";
+import axios from "axios";
 
 const Regorder = () => {
+	const url = Global.url;
 	const [todo, setTodo] = useState({
 		todoDate: "",
+		todoDesc: "",
 		todoTime: "",
 		todoLong: "",
 		todoWidth: "",
@@ -16,16 +18,30 @@ const Regorder = () => {
 		todoWeight: "",
 		todoCity: "",
 		todoAddress: "",
-		todoId: "",
+		todoIdentification: "",
 		todoName: "",
 		todoLastName: "",
-		todoIdD: "",
+		todoEmail: "",
+		todoIdentificationD: "",
 		todoNameD: "",
 		todoLastNameD: "",
-		todoEmail: "",
 		todoCityD: "",
 		todoAddressD: "",
 	});
+
+	function addRegOrder(e) {
+		e.preventDefault();
+		var regorder = todo;
+		console.log(todo);
+		axios
+			.post(url + "order/create", todo)
+			.then((res) => {
+				alert(res.data);
+			})
+			.then((err) => {
+				console.log(err);
+			});
+	}
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -37,45 +53,44 @@ const Regorder = () => {
 			[e.target.name]: e.target.value,
 		});
 	};
-	const submitForm = () => {
-		var formato_email = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
-		var passid_len = form.password.length;
-		var passid_len2 = form.passwordConf.length;
-		var username_len = form.username.length;
-		if (!form.email.match(formato_email)) {
-			alert("Debes ingresar un email electronico valido!");
-			focus();
-			setValidate(false);
-		} else if (username_len <= 8) {
-			alert(
-				"Debes ingresar un nombre de usuario con mas de 8 caracteres"
-			);
-			focus();
-		} else if (passid_len <= 8) {
-			alert("Debes ingresar una password con mas de 8 caracteres");
-			focus();
-		} else if (passid_len != passid_len2) {
-			alert("Las constraseñas deben coincidir");
-			focus();
-		} else {
-			setValidate(true);
-			setPath("/signup");
-		}
-		console.log(validate);
-	};
+	// const submitForm = () => {
+	// 	var formato_email = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
+	// 	var passid_len = form.password.length;
+	// 	var passid_len2 = form.passwordConf.length;
+	// 	var username_len = form.username.length;
+	// 	if (!form.email.match(formato_email)) {
+	// 		alert("Debes ingresar un email electronico valido!");
+	// 		focus();
+	// 		setValidate(false);
+	// 	} else if (username_len <= 8) {
+	// 		alert(
+	// 			"Debes ingresar un nombre de usuario con mas de 8 caracteres"
+	// 		);
+	// 		focus();
+	// 	} else if (passid_len <= 8) {
+	// 		alert("Debes ingresar una password con mas de 8 caracteres");
+	// 		focus();
+	// 	} else if (passid_len != passid_len2) {
+	// 		alert("Las constraseñas deben coincidir");
+	// 		focus();
+	// 	} else {
+	// 		setValidate(true);
+	// 		setPath("/signup");
+	// 	}
+	// 	console.log(validate);
+	// };
 	return (
 		<>
 			<NavbarComponent />
 			<Container id="main-container" className="d-grid">
-				<Row  className="form-container border rounded  px-5 py-2 my-5">
+				<Row className="form-container border rounded  px-5 py-2 my-5">
 					<form
 						id="reg-in-order"
-						onSubmit={handleSubmit}
-						className="py-3 text-center align-items-center">
+						onSubmit={addRegOrder}
+						className="py-3 text-center align-items-center"
+						method="POST">
 						<div className="py-3">
-							<h1 className="form-titulo">
-								Registro de Ordenes
-							</h1>
+							<h1 className="form-titulo">Registro de Ordenes</h1>
 						</div>
 						<div className="row">
 							<div className="col">
@@ -146,12 +161,12 @@ const Regorder = () => {
 								<div className="row">
 									<div className="col">
 										<input
-											name="todoId"
+											name="todoIdentification"
 											placeholder="Cedula Cliente"
 											type="text"
 											className="form-control mb-3"
 											onChange={handleChange}
-											value={todo.todoId}
+											value={todo.todoIdentification}
 										/>
 									</div>
 								</div>
@@ -216,20 +231,20 @@ const Regorder = () => {
 									</div>
 								</div>
 							</div>
-							<div className="col"  id="lineaVertical">
+							<div className="col" id="lineaVertical">
 								<div className="row">
 									<div className="col">
 										<input
-											name="todoIdD"
+											name="todoIdentificationD"
 											placeholder="Cedula Destinatario"
 											type="text"
 											className="form-control mb-3"
 											onChange={handleChange}
-											value={todo.todoId}
+											value={todo.todoIdentificationD}
 										/>
 									</div>
 								</div>
-								
+
 								<div className="row">
 									<div className="col">
 										<input
@@ -238,7 +253,7 @@ const Regorder = () => {
 											type="text"
 											className="form-control mb-3"
 											onChange={handleChange}
-											value={todo.todoName}
+											value={todo.todoNameD}
 										/>
 									</div>
 								</div>
@@ -250,7 +265,7 @@ const Regorder = () => {
 											type="text"
 											className="form-control mb-3"
 											onChange={handleChange}
-											value={todo.todoLastName}
+											value={todo.todoLastNameD}
 										/>
 									</div>
 								</div>
@@ -279,8 +294,22 @@ const Regorder = () => {
 									</div>
 								</div>
 							</div>
+							<div className="row"> </div>
+							<div className="row">
+								<div className="col">
+									<input
+										name="todoDesc"
+										placeholder="Descripcion del Paquete enviado"
+										type="text"
+										className="form-control mb-3"
+										onChange={handleChange}
+										value={todo.todoDesc}
+									/>
+								</div>
+							</div>
 						</div>
-						<button className="btn btn-create btn-primary" type="submit">
+
+						<button className="btn btn-primary" type="submit">
 							Crear Orden
 						</button>
 					</form>
