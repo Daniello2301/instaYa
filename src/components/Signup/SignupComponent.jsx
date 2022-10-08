@@ -35,34 +35,32 @@ const SignUp = () => {
         .then((result) => {
           setRegister(true);
           console.log(result);
-          
+          resetDataForm();
         })
         .catch( (error) => {
           console.log(error);
-						let message = typeof error.response !== "undefined" ? error.response.data.message : error.message;
+						let message = typeof error.response !== "undefined" ? error.response.data.Error : error.Error;
+            console.log(message);
 						if(message.length > 1){
-							let msg = JSON.stringify(message);
-              console.log(msg);
-							alert(msg)
+							alert(message[0].msg)
 						}else{
 							alert(message)
 						}
         });
-      resetDataForm();
     } catch (error) {
       console.log(error);
     }
   };
 
   const resetDataForm = () => {
-    id.value="";
-    name.value="";
-    lastname.value="";
-    address.value="";
-    city.value="";
-    username.value="";
-    email.value="";
-    password.value="";
+    setId("")
+    setName("")
+    setLastname("")
+    setAddress("")
+    setCity("")
+    setUsename("")
+    setEmail("")
+    setPassword("")
   };
 
   return (
