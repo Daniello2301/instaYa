@@ -6,7 +6,7 @@
     margin: auto;
     width: 30vw;
 }
-button{
+.login, .register{
     background-color: rgb(69, 139, 180);
     text-align: center;
     justify-content: center;

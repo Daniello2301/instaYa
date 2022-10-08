@@ -1,12 +1,15 @@
 import { useState } from "react"
-import { Link } from "react-router-dom";
-import { Form } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 import "./Login.css";
 
+import * as API from '../../services/users-services';
+
 function LoginComponent() {
-	const [validate, setValidate] = useState(true);
-	const [path, setPath] = useState("/");
+	const [validate, setValidate] = useState(false);
 	const [form, setForm] = useState({
 		email: "",
 		password: "",
@@ -20,21 +23,38 @@ function LoginComponent() {
 		setForm(nextFormState);
 	};
 
-	const submitForm = () => {
-		var formato_email = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
-		var passid_len = form.password.length;
-		if (!form.email.match(formato_email)) {
-			alert("Debes ingresar un email electronico valido!");
-			focus();
-			setValidate(false); //Para la parte dos, que los datos se conserven
-		} else if (passid_len <= 8) {
-			alert("Debes ingresar una password con mas de 8 caracteres");
-			focus(); //Para la parte dos, que los datos se conserven
-		} else {
-			setValidate(true); //Para la parte dos, que los datos se conserven
-			setPath("/HomePage");
-		}
-		console.log(validate);
+	const data = {
+		email: form.email,
+		password: form.password
+	}
+
+	const handleSubmit = async(e) => {
+		e.preventDefault();
+			try {
+				await API.login(data)
+					.then((response) => {
+						cookies.set("TOKEN", response.accessToken,
+						{
+							path:'/'
+						});
+						setValidate(true)
+						window.location.href = "/HomePage";
+					})
+					.catch((error) => {
+						console.log(error);
+						let message = typeof error.response !== "undefined" ? error.response.data.message : error.message;
+						if(message.length > 1){
+							let msg = JSON.stringify(message);
+							alert(msg)
+						}else{
+							alert(message)
+						}
+					})
+			} catch (error) {
+				error = new Error();
+				console.log(error);
+			}
+
 	};
 
 	return (
@@ -45,7 +65,7 @@ function LoginComponent() {
 					<div className="login-image">
 						<img src="" />
 					</div>
-					<Form id="formLogin" style={{ width: 450 + "px" }}>
+					<Form style={{ width: 450 + "px" }} onSubmit={(e) => handleSubmit(e)}>
 						<Form.Group className="mb-3">
 							<Form.Label>Correo electronico</Form.Label>
 							<Form.Control
@@ -69,13 +89,14 @@ function LoginComponent() {
 								onChange={onUpdateField}
 							/>
 						</Form.Group>
-						<Link
-							to={`${path}`}
-							className="btn btn-primary"
-							onClick={submitForm}>
-							{" "}
-							Submit{" "}
-						</Link>
+						<Button variant="primary" type='submit'	 onClick={(e) => handleSubmit(e)}>
+							Inisiar Sesion
+						</Button>
+						{validate ? (
+							<p className="text-success">You Are Logged in Successfully</p>
+							) : (
+							<p className="text-danger">You Are Not Logged in</p>
+						)}
 					</Form>
 				</div>
 			</div>

@@ -1,9 +1,11 @@
 import NavbarComponent from "../navbar/Navbar"
 import './HomePageComponent.css'
 import { Link} from 'react-router-dom';
+import Cookies from "universal-cookie";
 
 import logo from '../../assets/logo.png'
 function HomePageComponent(){
+
     return(
         <>
             <NavbarComponent/>
@@ -24,10 +26,10 @@ function Home(){
         </div>
         <br/>
         <Link to="/login">
-            <button className="Login"type="submit">Iniciar Sesion</button>
+            <button className="login"type="submit">Iniciar Sesion</button>
         </Link>
         <Link to="/signup">
-            <button className="Login"type="submit">Crear Usuario</button>
+            <button className="register"type="submit">Crear Usuario</button>
         </Link>
         </>
   )

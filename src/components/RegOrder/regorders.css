@@ -56,14 +56,14 @@
 	border-left: 2px solid #3c9491;
 
 }
-.btn {
+.btn-create {
     background: linear-gradient(180deg, #7aceda 0%, #3c9491 100%);
     transition: all .3s;
     color: rgb(252, 248, 248);
     font-weight: bold;
 }
 
-.btn:hover {
+.btn-create:hover {
     background: linear-gradient(180deg, #b9fdff 0%, #6dcfcc 100%);
     transition: all .3s;
     color: #185250;

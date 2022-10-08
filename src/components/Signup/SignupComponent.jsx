@@ -31,10 +31,23 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      await API.signup(data).then((result) => {
-        setRegister(true);
-        console.log(result);
-      });
+      await API.signup(data)
+        .then((result) => {
+          setRegister(true);
+          console.log(result);
+          
+        })
+        .catch( (error) => {
+          console.log(error);
+						let message = typeof error.response !== "undefined" ? error.response.data.message : error.message;
+						if(message.length > 1){
+							let msg = JSON.stringify(message);
+              console.log(msg);
+							alert(msg)
+						}else{
+							alert(message)
+						}
+        });
       resetDataForm();
     } catch (error) {
       console.log(error);
@@ -42,14 +55,14 @@ const SignUp = () => {
   };
 
   const resetDataForm = () => {
-    setId: "";
-    setName: "";
-    setLastname: "";
-    setAddress: "";
-    setCity: "";
-    setUsename: "";
-    setEmail: "";
-    setPassword: "";
+    id.value="";
+    name.value="";
+    lastname.value="";
+    address.value="";
+    city.value="";
+    username.value="";
+    email.value="";
+    password.value="";
   };
 
   return (
@@ -177,9 +190,9 @@ const SignUp = () => {
   );
 };
 
-/* export default SignUp;
+export default SignUp;
 
-import { useState } from "react";
+/*import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import "./SignupComponent.css";

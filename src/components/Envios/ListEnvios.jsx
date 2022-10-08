@@ -1,50 +1,82 @@
-import React from 'react'
-import { Container, Table } from 'react-bootstrap'
-import EnvioItem from './EnvioItem'
-import NavbarComponent from '../navbar/Navbar'
+import { useEffect, useState } from "react";
+import { Button, Container, Table } from "react-bootstrap";
+import NavbarComponent from "../navbar/Navbar";
+import Cookies from "universal-cookie";
+import * as API from '../../services/send-services'
 
-function ListEnvios(){
+import { Link } from "react-router-dom";
+import { BiEdit } from "react-icons/bi"
+const cookies = new Cookies();
 
-    const sends = [ 
-        {
-        id:345654,
-        date:"2022/09/21",
-        city:"Medellin",
-        address:"Cl 54 #08-32",
-        status:"Enviado"
-        },
-        {
-            id:345655,
-            date:"2022/09/21",
-            city:"Medellin",
-            address:"Cl 54 #08-32",
-            status:"Enviado"
+function ListEnvios() {
+
+    const token = cookies.get("TOKEN");
+
+    const [sends, setSends] = useState([]);
+
+    const getSends = async() => {
+        const configuration = {
+            headers: {
+                'Authorization': `${token}`,
+            }
         }
-    ]
+        try {
+            if(token){
+                await API.getAllSends(configuration)
+                .then((response ) => {
+                    console.log(response); 
+                    setSends(response);
+                })
+                .catch( (error) => {
+                    console.log(error);
+                });
+            }else{
+                window.location.href = "/login"
+            }
+        } catch (error) {
+            console.log(error);            
+        }
+    }
 
-    return(
-        <>
-            <NavbarComponent />
-            <Container className='mt-5'>
-                <Table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Fecha</th>
-                            <th>Ciudad Entrega</th>
-                            <th>Direccion</th>
-                            <th>Estado</th>
-                            <th>Editar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <EnvioItem sends={sends} key="" />
-                    </tbody>
-                </Table>
-            </Container>
-        </>
-    )
+    useEffect(() => {
+        getSends()
+    },[])
 
+
+  return (
+    <>
+      <NavbarComponent />
+      <Container>
+        <Table className="sends_list">
+            <thead>
+                <tr>
+                    <th>Código de envio</th>
+                    <th>Fecha</th>
+                    <th>Ciudad de entrega</th>
+                    <th>Direccion de entrega</th>
+                    <th>Persona de entrega</th>
+                    <th>Estado</th>
+                    <th>Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    sends.map(map => 
+                        <tr key={map._id}>
+                            <td> {map.codeSend} </td>
+                            <td> {map.dateSend} </td>
+                            <td> {map.cityUserDelivery} </td>
+                            <td> {map.addressUserDelivery} </td>
+                            <td> {map.nameUserDelivery} </td>
+                            <td> {map.status} </td>
+                            <td> <Button to={"/edit"} variant="secondary" > <BiEdit/> </Button> </td>
+                        </tr>)
+                }
+            </tbody>
+        </Table>
+      </Container>
+    </>
+  )
 }
 
-export default ListEnvios
+export default ListEnvios;
