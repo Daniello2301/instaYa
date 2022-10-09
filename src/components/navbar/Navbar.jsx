@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { Button, Container, Nav, Navbar} from 'react-bootstrap';
 import { FaUserCircle } from 'react-icons/fa'
 import './Navbar.css'
-
+import "../../index.css";
 function NavbarComponent() {
   return (
     <>

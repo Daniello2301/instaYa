@@ -309,7 +309,7 @@ const Regorder = () => {
 							</div>
 						</div>
 
-						<button className="btn btn-primary" type="submit">
+						<button className="btn btn-create" type="submit">
 							Crear Orden
 						</button>
 					</form>

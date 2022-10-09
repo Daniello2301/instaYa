@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Button, Container, Table } from "react-bootstrap";
+import { Button, Container, Table, Row } from "react-bootstrap";
 import NavbarComponent from "../navbar/Navbar";
 import Cookies from "universal-cookie";
 import * as API from '../../services/send-services'
 
 import { Link } from "react-router-dom";
+import "../../index.css";
 import { BiEdit } from "react-icons/bi"
 const cookies = new Cookies();
 
@@ -46,10 +47,11 @@ function ListEnvios() {
   return (
     <>
       <NavbarComponent />
-      <Container>
+      <Container id="main-container" className="d-grid">
+      <Row className="form-container border rounded  px-5 py-2 my-5 ">
         <Table className="sends_list">
             <thead>
-                <tr>
+                <tr className="tr-list">
                     <th>Código de envio</th>
                     <th>Fecha</th>
                     <th>Ciudad de entrega</th>
@@ -74,6 +76,7 @@ function ListEnvios() {
                 }
             </tbody>
         </Table>
+        </Row>
       </Container>
     </>
   )
