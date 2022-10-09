@@ -17,7 +17,6 @@ const SignUp = () => {
 	const [password, setPassword] = useState("");
 	const [register, setRegister] = useState(false);
 
-<<<<<<< HEAD
   const data = {
     identification: id,
     name: name,
@@ -52,45 +51,6 @@ const SignUp = () => {
       console.log(error);
     }
   };
-=======
-	const data = {
-		identification: id,
-		name: name,
-		lastname: lastname,
-		address: address,
-		city: city,
-		username: username,
-		email: email,
-		password: password,
-	};
-
-	const handleSubmit = async (e) => {
-		try {
-			e.preventDefault();
-			await API.signup(data)
-				.then((result) => {
-					setRegister(true);
-					console.log(result);
-					resetDataForm();
-				})
-				.catch((error) => {
-					console.log(error);
-					let message =
-						typeof error.response !== "undefined"
-							? error.response.data.Error
-							: error.Error;
-					console.log(message);
-					if (message.length > 1) {
-						alert(message[0].msg);
-					} else {
-						alert(message);
-					}
-				});
-		} catch (error) {
-			console.log(error);
-		}
-	};
->>>>>>> acbfe222b78c920d0c01754b407f808003eca374
 
 	const resetDataForm = () => {
 		setId("");

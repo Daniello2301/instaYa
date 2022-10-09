@@ -71,6 +71,7 @@ function LoginComponent() {
 							className="py-3 align-items-center"
 							style={{ width: 350 + "px" }}
 							onSubmit={(e) => handleSubmit(e)}>
+
 							<div className="row text-center">
 								<div className="col">
 									<h1 className="form-titulo text-center mt-3">
@@ -78,6 +79,7 @@ function LoginComponent() {
 									</h1>
 								</div>
 							</div>
+						<div>
 							<Form.Group className="my-4 mb-3">
 								<Form.Label>Correo electronico</Form.Label>
 								<Form.Control
@@ -89,29 +91,7 @@ function LoginComponent() {
 									onChange={onUpdateField}
 								/>
 							</Form.Group>
-
-						<Form.Group className="mb-3">
-							<Form.Label>Contraseña</Form.Label>
-							<Form.Control
-								type="password"
-								placeholder="Password"
-								id="password"
-								name="password"
-								value={form.password}
-								onChange={onUpdateField}
-							/> 
-						</Form.Group>
-						<Button variant="primary" type='submit'	 onClick={(e) => handleSubmit(e)}>
-							Inisiar Sesion
-						</Button>
-						{validate ? (
-							<p className="text-success">You Are Logged in Successfully</p>
-							) : (
-							<p className="text-danger">You Are Not Logged in</p>
-						)}
-					</Form>
-				</div>
-			</div>
+						</div>
 							<Form.Group className="mb-3">
 								<Form.Label>Contraseña</Form.Label>
 								<Form.Control
@@ -149,7 +129,7 @@ function LoginComponent() {
                                         href="/signup">
 										Registrarme
 									</Button>
-									</div>
+								</div>
 							</div>
 						</Form>
 					</div>

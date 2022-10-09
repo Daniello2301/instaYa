@@ -38,7 +38,6 @@ function Regorder() {
     });
   };
 
-<<<<<<< HEAD
   const data = {
     codeSend: codeSend,
     description: formDesc,
@@ -314,15 +313,5 @@ function Regorder() {
     </>
   );
 }
-=======
-						<button className="btn btn-create" type="submit">
-							Crear Orden
-						</button>
-					</form>
-				</Row>
-			</Container>
-		</>
-	);
-};
->>>>>>> acbfe222b78c920d0c01754b407f808003eca374
+
 export default Regorder;
