@@ -87,7 +87,7 @@ function LoginComponent() {
 								name="password"
 								value={form.password}
 								onChange={onUpdateField}
-							/>
+							/> 
 						</Form.Group>
 						<Button variant="primary" type='submit'	 onClick={(e) => handleSubmit(e)}>
 							Inisiar Sesion

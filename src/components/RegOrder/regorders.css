@@ -61,6 +61,7 @@
     transition: all .3s;
     color: rgb(252, 248, 248);
     font-weight: bold;
+	border: none;
 }
 
 .btn-create:hover {

@@ -27,7 +27,7 @@ const SignUp = () => {
     email: email,
     password: password,
   };
-
+ 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();

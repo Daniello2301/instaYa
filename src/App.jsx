@@ -20,7 +20,7 @@ function App() {
           <Route path="/Sends" element={<ListEnvios />} />
           <Route path="/login" element={<LoginComponent />} />
           <Route path="/NewSend" element={<Regorder/>} />
-          <Route path="/EditSend" element={<EditEnvio/>} />
+          <Route path="/EditSend/:id" element={<EditEnvio/>} />
         </Routes>
       </BrowserRouter>
     </>

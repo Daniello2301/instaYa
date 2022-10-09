@@ -29,6 +29,9 @@ function ListEnvios() {
                 })
                 .catch( (error) => {
                     console.log(error);
+                    if(error.response.data.message == " Error unauthorized"){
+                        window.location.href = "/login"
+                    }
                 });
             }else{
                 window.location.href = "/login"
@@ -61,15 +64,15 @@ function ListEnvios() {
             </thead>
             <tbody>
                 {
-                    sends.map(map => 
-                        <tr key={map._id}>
-                            <td> {map.codeSend} </td>
-                            <td> {map.dateSend} </td>
-                            <td> {map.cityUserDelivery} </td>
-                            <td> {map.addressUserDelivery} </td>
-                            <td> {map.nameUserDelivery} </td>
-                            <td> {map.status} </td>
-                            <td> <Link to={"/edit"} className="btn btn-secondary" > <BiEdit/> </Link> </td>
+                    sends.map(send => 
+                        <tr key={send._id}>
+                            <td> {send.codeSend} </td>
+                            <td> {send.dateSend} </td>
+                            <td> {send.cityUserDelivery} </td>
+                            <td> {send.addressUserDelivery} </td>
+                            <td> {send.nameUserDelivery} </td>
+                            <td> {send.status} </td>
+                            <td> <Link to={`/EditSend/${send._id}`} className="btn btn-secondary" > <BiEdit/> </Link> </td>
                         </tr>)
                 }
             </tbody>
