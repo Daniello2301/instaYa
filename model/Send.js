@@ -1,7 +1,11 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, default: mongoose } = require('mongoose');
 
 const SendSchema = Schema({
 
+    userLogin:{
+        type: String,
+        require: true,
+    },
     codeSend:{
         type: String,
         require: true,
@@ -33,6 +37,10 @@ const SendSchema = Schema({
         require:true
     },
     height:{
+        type: Number,
+        require:true
+    },
+    weight:{
         type: Number,
         require:true
     },

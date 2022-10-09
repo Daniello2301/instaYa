@@ -19,8 +19,8 @@ router.post('/',
     check('lastname', 'LastName is require').not().isEmpty(),
     check('address', 'Address is require').not().isEmpty(),
     check('city', 'City is require').not().isEmpty(),
-    check('username', 'User Name is require').not().isEmpty(),
     check('email', 'Email Name is require').not().isEmpty(),
+    check('username', 'User Name is require').not().isEmpty(),
     check('email', 'Email invalid format').isEmail(),    
     check('password', 'Password is require').not().isEmpty(),
 ],
@@ -42,10 +42,18 @@ async function(req, res){
         }
 
         //Validate email exists Select * from users WHERE email = req.body.email
+        const userNameExist = await User.findOne({ username: req.body.username })
+        if(userNameExist){
+            return res.status(400).json({ message: "The username is already exists"})
+        }
+
+        //Validate email exists Select * from users WHERE email = req.body.email
         const emailExists = await User.findOne({ email: req.body.email })
         if(emailExists){
             return res.status(400).json({ message: "Email is already exists"})
         }
+
+
 
         let user = new User();
          

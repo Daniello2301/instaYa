@@ -3,6 +3,7 @@ const { Router } = require('express');
 const User = require('../model/User');
 const bcrypt = require('bcryptjs')
 const { jwtGenerator } = require('../helpers/JWT')
+const session = require('express-session');
 
 const router = Router()
 
@@ -17,6 +18,8 @@ async function(req, res){
 
     try {
 
+        
+         //req.session.visitas = req.session.visitas ? ++req.session.visitas : 1;
         //Validation input 
         const errors = validationResult(req);
         if(!errors.isEmpty())
@@ -45,6 +48,13 @@ async function(req, res){
         //Get token
         const token = jwtGenerator(userFinded);
 
+        // Set atributtes session
+        req.session.user = userFinded;
+        req.session.username = req.body.email;
+        req.session.role = req.body.role;
+        req.session.id = userFinded._id
+
+        //Response
         res.json({ 
             _id: userFinded._id, 
             identification: userFinded.identification,
@@ -64,3 +74,16 @@ async function(req, res){
 
 
 module.exports = router;
+
+/* 
+
+app.use((req, res, next) => {
+  req.session.usuario = "cway";
+  req.session.rol ='user';
+  req.session.visitas = req.session.visitas ? ++req.session.visitas : 1;
+  // res.header('Access-Control-Allow-Origin', '*');
+  // res.header('Access-Control-Allow-Headers', 'X-Requested-With, Authorization, X-API-Key, Origin, Content-Type, Accept, Access-Control-Allow-Requested-Method');
+  // res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  // res.header('Allow', 'GET, POST, PUT, DELETE, OPTIONS');
+  next();
+}) */

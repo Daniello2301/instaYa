@@ -1,6 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
 const cors = require('cors')
+const session = require('express-session')
+
 
 //import connetion to data base
 const { connectionDB } = require('./DB/db-config');
@@ -16,6 +18,12 @@ const SendRouter = require('./routes/send-controller');
 const app = express();
 connectionDB();
 
+//Use session to get data form login
+app.use(session({
+  secret: "API for instaYa",
+  resave: false,
+  saveUninitialized: true
+}))
 
 //Middlewares
 app.use(cors());
