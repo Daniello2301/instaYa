@@ -33,11 +33,15 @@ router.get("/edit/:id", [jwtValidate], async function (req, res) {
   }
 });
 
-// Get sends in delivery status
-router.get("/dev", [jwtValidate], async function (req, res) {
+// Get sends in delivery status  daniellopera@uninorte.edu.co   1007243602
+router.get("/dev", 
+[
+  jwtValidate
+], 
+async function (req, res) {
   try {
-    console.log(req.session.user?.email);
-    const sends = await Send.find({ userLogin: req.session.user?.email });
+    console.log(session.username);
+    const sends = await Send.find({ userLogin: session.username});
     res.send(sends);
   } catch (error) {
     console.log(error);
@@ -98,7 +102,7 @@ router.post(
 
       let send = new Send();
 
-      send.userLogin = req.session.username;
+      send.userLogin = session.username;
       send.codeSend = req.body.codeSend;
       send.description = req.body.description;
       send.dateSend = req.body.dateSend;
@@ -184,6 +188,7 @@ router.put(
       }
 
       send.codeSend = codeSend;
+      send.userLogin = send.userLogin;
       send.description = send.description;
       send.dateSend = send.dateSend;
       send.hourSend = send.hourSend;

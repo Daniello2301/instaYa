@@ -18,7 +18,6 @@ async function(req, res){
 
     try {
 
-        
          //req.session.visitas = req.session.visitas ? ++req.session.visitas : 1;
         //Validation input 
         const errors = validationResult(req);
@@ -47,12 +46,12 @@ async function(req, res){
 
         //Get token
         const token = jwtGenerator(userFinded);
-
+        console.log(userFinded);
         // Set atributtes session
-        req.session.user = userFinded;
-        req.session.username = req.body.email;
-        req.session.role = req.body.role;
-        req.session.id = userFinded._id
+        session.user = userFinded;
+        session.username = req.body.email;
+        session.role = req.body.role;
+        session.id = userFinded._id;
 
         //Response
         res.json({ 

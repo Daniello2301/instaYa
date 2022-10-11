@@ -21,7 +21,7 @@ connectionDB();
 //Use session to get data form login
 app.use(session({
   secret: "API for instaYa",
-  resave: false,
+  resave: true,
   saveUninitialized: true
 }))
 
