@@ -14,6 +14,7 @@ function ListEnvios() {
     const token = cookies.get("TOKEN");
 
     const [sends, setSends] = useState([]);
+    const [dataLogin, setDataLogin] = useState({});
 
     const getSends = async() => {
         const configuration = {
@@ -23,27 +24,28 @@ function ListEnvios() {
         }
         try {
             if(token){
-                await API.getAllSends(configuration)
-                .then((response ) => {
-                    console.log(response); 
-                    setSends(response);
-                })
-                .catch( (error) => {
-                    console.log(error);
-                    if(error.response.data.message == " Error unauthorized"){
-                        window.location.href = "/login"
-                    }
-                });
+               const response = await API.getAllSends(configuration);
+               setSends(response);
+               console.log(response);
+               console.log(dataLogin.email);
             }else{
                 window.location.href = "/login"
+                cookies.remove("TOKEN");
             }
         } catch (error) {
             console.log(error);            
+            if(error.response.data.message == " Error unauthorized"){
+                window.location.href = "/login"
+            }
         }
     }
 
     useEffect(() => {
-        getSends()
+        getSends();
+        const dataLogin = JSON.parse(localStorage.getItem('dataLogin'));
+        if(dataLogin){
+            setDataLogin(dataLogin);
+        }
     },[])
 
 
@@ -66,7 +68,7 @@ function ListEnvios() {
             </thead>
             <tbody>
                 {
-                    sends.map(send => 
+                    sends./* filter((send) => send.userLogin == dataLogin.email) */map(send => 
                         <tr key={send._id}>
                             <td> {send.codeSend} </td>
                             <td> {send.dateSend} </td>

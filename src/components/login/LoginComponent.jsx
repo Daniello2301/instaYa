@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Form, Button, Alert, Container, Row } from "react-bootstrap";
 import Cookies from "universal-cookie";
 import "../../index.css";
@@ -15,6 +15,8 @@ function LoginComponent() {
 		password: "",
 	});
 
+	const [dataLogin, setDataLogin ] = useState("");
+
 	const onUpdateField = (e) => {
 		const nextFormState = {
 			...form,
@@ -27,17 +29,18 @@ function LoginComponent() {
 		email: form.email,
 		password: form.password,
 	};
-
+	
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
 			await API.login(data)
-				.then((response) => {
-					cookies.set("TOKEN", response.accessToken, {
-						path: "/",
-					});
-					setValidate(true);
-					window.location.href = "/HomePage";
+			.then((response) => {
+				cookies.set("TOKEN", response.accessToken, {
+					path: "/",
+				});
+				localStorage.setItem('dataLogin', JSON.stringify(response));
+				setValidate(true);
+				window.location.href = "/HomePage";
 				})
 				.catch((error) => {
 					console.log(error);

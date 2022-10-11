@@ -15,13 +15,13 @@ function EditEnvio() {
   const { id } = useParams();
   const [send, setSend] = useState({});
 
-  const configuration = {
-    headers: {
-      Authorization: `${token}`,
-    },
-  };
-
+  
   const getSent = async () => {
+    const configuration = {
+      headers: {
+        'Authorization': `${token}`,
+      },
+    };
     try {
       await API.getSendById(id, configuration)
         .then((response) => {
@@ -90,13 +90,13 @@ function EditEnvio() {
       cityUserDelivery,
     };
     try {
-      await API.updateSend(id, data, configuration)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      const conf = {
+        headers: {
+          'Authorization': `${token}`,
+        },
+      };
+      const response = await API.updateSend(id, data, conf);
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -109,10 +109,16 @@ function EditEnvio() {
         <h1 className="text-center">Editar Envío</h1>
         <Row className="form-container">
           <Col>
-            <div className="image">
-              <GrSend className="img" />
-            </div>
-            <div className="send-info"></div>
+            <Row>
+              <div className="send-info">
+                <p> { send.description } </p>
+              </div>
+            </Row>
+            <Row>
+              <div className="image">
+                <GrSend className="img" />
+              </div>
+            </Row>
           </Col>
           <Col>
             <Form className="form-edit-send" onSubmit={handleSubmit}>
@@ -141,12 +147,14 @@ function EditEnvio() {
                     <Form.Select
                       name="status"
                       aria-label="Default select example"
+                      value={status}
+                      onChange={handleChange}
                     >
                       <option>------</option>
-                      <option value={status}>ENVIADO</option>
-                      <option value={status}>ENTREGADO</option>
-                      <option value={status}>EN CAMINO</option>
-                      <option value={status}>EN BODEGA</option>
+                      <option value={"ENVIADO"}>ENVIADO</option>
+                      <option value={"ENTREGADO"}>ENTREGADO</option>
+                      <option value={"EN CAMINO"}>EN CAMINO</option>
+                      <option value={"EN BODEGA"}>EN BODEGA</option>
                     </Form.Select>
                   </FormGroup>
                 </Col>
