@@ -107,20 +107,46 @@ function EditEnvio() {
       <NavbarComponent />
       <Container className="mt-4">
         <h1 className="text-center">Editar Envío</h1>
-        <Row className="form-container">
+        <Row className="form-container-edit">
           <Col>
-            <Row>
-              <div className="send-info">
-                <p> { send.description } </p>
-              </div>
-            </Row>
             <Row>
               <div className="image">
                 <GrSend className="img" />
               </div>
             </Row>
+            <Row>
+              <Col>
+                <div className="send-info">
+                  <p> { send.description } </p>
+                  <Row>
+                    <Col style={{ width: "200px"}} className="text-center">
+                      <p> { send.dateSend } </p>
+                    </Col>
+                    <Col  style={{ width: "200px"}} className="text-center" >
+                        <p> { send.hourSend } </p>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col style={{ width: "200px"}} className="text-center">
+                        <p> <strong>Ancho:</strong>  { send.width } cm </p>
+                    </Col>
+                    <Col style={{ width: "200px"}} className="text-center">
+                        <p>  <strong>Alto:</strong> { send.height } cm </p>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col style={{ width: "200px"}} className="text-center">
+                        <p> <strong>Largo:</strong>   { send.large } cm </p>
+                    </Col>
+                    <Col style={{ width: "200px"}} className="text-center">
+                        <p>  <strong>Peso:</strong> { send.weight } lb </p>
+                    </Col>
+                  </Row>
+                </div>
+              </Col>
+            </Row>
           </Col>
-          <Col>
+          <Col className="form-side">
             <Form className="form-edit-send" onSubmit={handleSubmit}>
               <Row>
                 <Col>

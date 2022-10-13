@@ -13,7 +13,7 @@ function Regorder() {
   const token = cookies.get("TOKEN");
 
   const [form, setForm] = useState({});
-
+ 
   const {
     codeSend,
     formDate,
@@ -119,8 +119,8 @@ function Regorder() {
   return (
     <>
       <NavbarComponent />
-      <Container id="main-container" className="d-grid">
-        <Row className="form-container border rounded  px-5 py-2 my-5">
+      <Container id="container-newsend" className="d-grid">
+        <Row className="form-container-reg border rounded  px-5 py-2 my-5">
           <form
             id="reg-in-order"
             onSubmit={handleSubmit}
@@ -149,7 +149,7 @@ function Regorder() {
                   className="form-control mb-3"
                   onChange={handleChange}
                   value={formTime}
-                />
+                /> 
               </div>
             </div>
             <div className="row">

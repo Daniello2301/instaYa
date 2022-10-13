@@ -48,8 +48,8 @@ function Home() {
 									<Button
 										className="btn btn-create"
 										type="submit"
-                                        href="/signup">
-										Registrarme
+                                        href="/sends">
+										Envios
 									</Button>
 								</div>
 							</div>

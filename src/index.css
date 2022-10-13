@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Baskervville&family=Poppins:wght@300&display=swap');
+*{
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+.root{
+    background-image: linear-gradient(to bottom right, #018FA3, #FFF);
+    background-repeat: no-repeat;
+    background-size: contain;;
+	height: 100vh;
+}
+
 .form-control::placeholder{
 	font-weight: bold;
 	opacity: 0.5;
@@ -29,6 +41,7 @@
 }
 #main-container {
 	place-items: center center;
+	
 }
 #reg-in-order {
 	align-items: center;
@@ -44,7 +57,7 @@
 	color: #3c9491;
 	text-decoration-color: #70ccc9;
 }
-#form-container {
+#form-container-reg {
 	box-sizing: border-box;
 	padding: 0.2rem;
 	border: 1px solid #3c9491;

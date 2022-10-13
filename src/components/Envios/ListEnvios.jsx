@@ -5,7 +5,7 @@ import Cookies from "universal-cookie";
 import * as API from '../../services/send-services'
 
 import { Link } from "react-router-dom";
-import "../../index.css";
+import "./Envios.css";
 import { BiEdit } from "react-icons/bi"
 const cookies = new Cookies();
 
@@ -52,8 +52,8 @@ function ListEnvios() {
   return (
     <>
       <NavbarComponent />
-      <Container id="main-container" className="d-grid">
-      <Row className="form-container border rounded  px-5 py-2 my-5 ">
+      <Container id="main-container" className="d-grid ">
+      <Row className="form-container border rounded  list-sends px-5 py-2 my-5 ">
         <Table className="sends_list">
             <thead>
                 <tr className="tr-list">

@@ -12,15 +12,23 @@
     height: 200px;
 }
 
-.form-container
+.form-container-edit
 {
-    box-sizing: border-box;
-    padding: .2rem;
-    border: 1px solid #3c9491;
-    box-shadow: 5px 5px 20px 0px #3c9491;
+    background: rgba( 255, 255, 255, 0.50 );
+    box-shadow: 0 8px 32px 0 rgba( 255, 255, 255, 0.2 );
+    backdrop-filter: blur( 20px );
+    -webkit-backdrop-filter: blur( 20px );
     border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.30 );
 }
 
+.form-container-edit .send-info{
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .form-edit-send
 {
     margin: 2rem;
